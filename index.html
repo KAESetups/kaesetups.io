@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAE Setups | Simracing Setups</title>
-    <!-- Importamos una fuente deportiva geométrica que encaja perfectamente con Sprintura Demo -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -100,7 +99,6 @@
             padding: 0 1rem 3rem 1rem;
         }
 
-        /* Secciones y Tarjetas */
         .section-title {
             font-size: 1.4rem;
             color: var(--neon-green);
@@ -121,7 +119,6 @@
         }
 
         .card:hover {
-            transform: translateY(-3px);
             border-color: var(--neon-green);
             box-shadow: 0 6px 25px var(--neon-green-glow);
         }
@@ -137,7 +134,66 @@
             font-size: 0.95rem;
             margin-bottom: 1rem;
             line-height: 1.5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Estilos para el Desplegable (Acordeón) */
+        details {
+            background-color: #111111;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.8rem 1.2rem;
+            margin-top: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        details[open] {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
+        summary {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--neon-green);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        .dropdown-content {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .setup-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #1a1a1a;
+        }
+
+        .setup-item:last-child {
+            border-bottom: none;
         }
 
         .btn {
@@ -145,21 +201,20 @@
             background-color: transparent;
             color: var(--neon-green);
             border: 1px solid var(--neon-green);
-            padding: 0.6rem 1.2rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             transition: all 0.2s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
             font-family: 'Orbitron', sans-serif;
         }
 
         .btn:hover {
             background-color: var(--neon-green);
             color: var(--bg-color);
-            box-shadow: 0 0 15px var(--neon-green-glow);
+            box-shadow: 0 0 10px var(--neon-green-glow);
         }
 
         footer {
@@ -201,10 +256,40 @@
         <!-- Reglajes por Simulador -->
         <h2 class="section-title">Nuestros Reglajes</h2>
         
+        <!-- Le Mans Ultimate con Desplegables -->
         <div class="card">
             <h2>Le Mans Ultimate</h2>
             <p>Configuraciones de Hypercar y GTE/GT3 optimizadas para rendimiento puro y consistencia en stints largos de resistencia.</p>
-            <a href="#" class="btn">Próximamente</a>
+            
+            <!-- Desplegable Categoría Hypercar -->
+            <details>
+                <summary>Hypercar</summary>
+                <div class="dropdown-content">
+                    <div class="setup-item">
+                        <span>Ferrari 49P (Le Mans - Race Setup)</span>
+                        <a href="#" class="btn">Descargar</a>
+                    </div>
+                    <div class="setup-item">
+                        <span>Toyota GR010 (Spa - Quali Setup)</span>
+                        <a href="#" class="btn">Descargar</a>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Desplegable Categoría GT3 -->
+            <details>
+                <summary>GT3 / GTE</summary>
+                <div class="dropdown-content">
+                    <div class="setup-item">
+                        <span>Porsche 911 GT3 R (Monza - Race Setup)</span>
+                        <a href="#" class="btn">Descargar</a>
+                    </div>
+                    <div class="setup-item">
+                        <span>BMW M4 GT3 (Portimão - Quali Setup)</span>
+                        <a href="#" class="btn">Descargar</a>
+                    </div>
+                </div>
+            </details>
         </div>
 
         <div class="card">
