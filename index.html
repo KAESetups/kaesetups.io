@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAE Setups | Simracing Setups</title>
+    
+    <!-- PASO 1: El traductor de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -59,23 +63,10 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            transition: opacity 0.2s ease;
-        }
-
-        .nav-brand:hover {
-            opacity: 0.9;
-        }
-
-        .nav-brand img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px var(--neon-green-glow));
         }
 
         .nav-brand span {
             color: var(--neon-green);
-            text-shadow: 0 0 10px var(--neon-green-glow);
         }
 
         .nav-links {
@@ -98,7 +89,6 @@
             transition: all 0.25s ease;
             padding: 0.5rem 0;
             display: inline-block;
-            letter-spacing: 0.5px;
         }
 
         .nav-links > li > a:hover,
@@ -107,96 +97,30 @@
             text-shadow: 0 0 8px var(--neon-green-glow);
         }
 
-        /* Línea animada inferior */
-        .nav-links > li > a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--neon-green);
-            transition: width 0.25s ease;
-            box-shadow: 0 0 8px var(--neon-green);
-        }
-
-        .nav-links > li > a:hover::after,
-        .nav-links > li > a.active::after {
-            width: 100%;
-        }
-
-        /* Desplegable ultra estable y elegante */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: -20px;
-            background-color: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-top: 2px solid var(--neon-green);
-            list-style: none;
-            min-width: 250px;
-            display: none;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
-            border-radius: 0 0 8px 8px;
-            padding: 0.6rem 0;
-            opacity: 0;
-            transform: translateY(-5px);
-            transition: all 0.2s ease;
-        }
-
-        .dropdown::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: -20px;
-            width: 150px;
-            height: 20px;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu li {
-            position: static;
-        }
-
-        .dropdown-menu li a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.85rem;
-            font-family: 'Segoe UI', sans-serif;
-            color: var(--text-gray);
-            text-decoration: none;
-            text-transform: none;
-            letter-spacing: normal;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-menu li a::after {
-            display: none;
-        }
-
-        .dropdown-menu li a:hover {
-            background-color: rgba(214, 254, 0, 0.08);
+        /* Estilo del Botón de Login */
+        .btn-login {
+            background: transparent;
+            border: 1px solid var(--neon-green);
             color: var(--neon-green);
-            padding-left: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
         }
 
-        /* Contenido Principal */
+        .btn-login:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
         .banner-container {
             width: 100%;
             max-height: 400px;
             overflow: hidden;
             border-bottom: 2px solid var(--neon-green);
-            box-shadow: 0 4px 30px var(--neon-green-glow);
         }
 
         .banner-container img {
@@ -206,124 +130,29 @@
             display: block;
         }
 
-        header {
-            text-align: center;
-            margin: 2.5rem 0 1.5rem 0;
-            padding: 0 1rem;
-        }
-
-        .logo-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 0.5rem;
-        }
-
-        .logo-title img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px var(--neon-green-glow));
-        }
-
-        h1, h2, .section-title {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px var(--neon-green-glow);
-        }
-
-        h1 span {
-            color: var(--neon-green);
-        }
-
-        p.subtitle {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
         .container {
             width: 100%;
             max-width: 900px;
-            display: grid;
-            gap: 1.5rem;
-            padding: 0 1rem 3rem 1rem;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--neon-green);
-            margin: 1.5rem 0 0.5rem 0;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.3rem;
+            padding: 3rem 1rem;
         }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-left: 4px solid var(--neon-green);
-            padding: 1.5rem 2rem;
+            padding: 1.5rem;
             border-radius: 6px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-        }
-
-        .card:hover {
-            border-color: var(--neon-green);
-            box-shadow: 0 6px 25px var(--neon-green-glow);
-        }
-
-        .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-white);
-        }
-
-        .card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
-            padding: 0.5rem 1.1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .btn:hover {
-            background-color: var(--neon-green);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--neon-green-glow);
         }
 
         footer {
             width: 100%;
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 1rem;
-            color: var(--text-gray);
-            font-size: 0.85rem;
+            padding: 2rem;
             text-align: center;
-            letter-spacing: 1px;
+            color: var(--text-gray);
             margin-top: auto;
+            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -331,72 +160,31 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
-            <img src="image.png" alt="KAE Logo"> KAE <span>Setups</span>
+            <img src="image.png" alt="KAE Logo" style="width:36px; height:36px; object-fit:contain;"> KAE <span>Setups</span>
         </a>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Inicio</a></li>
-            <li class="dropdown">
-                <a href="#">Simuladores ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="lmu.html">Le Mans Ultimate</a></li>
-                    <li><a href="#">Assetto Corsa (Próximamente)</a></li>
-                    <li><a href="#">RaceRoom (Próximamente)</a></li>
-                </ul>
-            </li>
-            <li><a href="index.html">Servicios</a></li>
+            <li><a href="lmu.html">Simuladores</a></li>
+            <li><a href="#">Servicios</a></li>
+            <!-- Botón de Login añadido correctamente -->
+            <li><button id="login-btn" class="btn-login" onclick="handleAuth()">Iniciar Sesión</button></li>
         </ul>
     </nav>
 
     <div class="banner-container">
-        <img src="BANNER.jpg" alt="KAE Setups Banner">
+        <img src="BANNER.jpg" alt="KAE Banner">
     </div>
-
-    <header>
-        <div class="logo-title">
-            <img src="image.png" alt="KAE Logo">
-            <h1>KAE <span>Setups</span></h1>
-        </div>
-        <p class="subtitle">Plataforma profesional de reglajes para Simracing</p>
-    </header>
 
     <div class="container">
-        <h2 class="section-title">Quiénes Somos</h2>
         <div class="card">
-            <h2>El Equipo KAE</h2>
-            <p>Somos un proyecto especializado en el desarrollo y la optimización de configuraciones avanzadas para competiciones de simracing. Buscamos exprimir al máximo el rendimiento de cada vehículo, ofreciendo setups precisos, consistentes y adaptados a las exigencias de los pilotos más competitivos.</p>
-        </div>
-
-        <h2 class="section-title">Nuestros Reglajes</h2>
-        
-        <div class="card">
-            <h2>Le Mans Ultimate</h2>
-            <p>Configuraciones de Hypercar y GTE/GT3 optimizadas para rendimiento puro y consistencia en stints largos de resistencia.</p>
-            <a href="lmu.html" class="btn">Elegir Coche</a>
-        </div>
-
-        <div class="card">
-            <h2>Assetto Corsa</h2>
-            <p>Físicas ajustadas, reglajes aerodinámicos avanzados y mapas de configuración personalizados para competición.</p>
-            <a href="#" class="btn">Próximamente</a>
-        </div>
-
-        <div class="card">
-            <h2>RaceRoom Racing Experience</h2>
-            <p>Setups equilibrados para exprimir al máximo el comportamiento dinámico de los bólidos en RaceRoom.</p>
-            <a href="#" class="btn">Próximamente</a>
-        </div>
-
-        <h2 class="section-title">Servicios Personalizados</h2>
-        <div class="card">
-            <h2>Setups a Pedido</h2>
-            <p>¿Necesitas una configuración específica para un evento, campeonato o circuito en concreto? Adaptamos el coche por completo a tu estilo de conducción.</p>
-            <a href="#" class="btn">Pedir Setup</a>
+            <h1 style="font-family:'Orbitron',sans-serif; margin-bottom:0.5rem;">Bienvenido a KAE Setups</h1>
+            <p style="color:var(--text-gray);">Tu plataforma profesional de reglajes para Simracing.</p>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 KAE Setups. Todos los derechos reservados. #BUILTDIFFERENT
-    </footer>
+    <footer>&copy; 2026 KAE Setups. Todos los derechos reservados. #BUILTDIFFERENT</footer>
 
+    <!-- PASO 3: Vincular el script de login -->
+    <script src="auth.js"></script>
 </body>
 </html>
