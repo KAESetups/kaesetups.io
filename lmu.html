@@ -76,18 +76,21 @@
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-links > li > a {
             color: var(--text-white);
             text-decoration: none;
             font-size: 0.95rem;
             font-family: 'Orbitron', sans-serif;
             transition: color 0.2s ease;
+            padding: 0.5rem 0;
+            display: inline-block;
         }
 
-        .nav-links a:hover {
+        .nav-links > li > a:hover {
             color: var(--neon-green);
         }
 
+        /* Desplegable del Navbar Corregido */
         .dropdown {
             position: relative;
         }
@@ -95,17 +98,26 @@
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            left: 0;
+            left: -20px;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-top: 2px solid var(--neon-green);
             list-style: none;
-            min-width: 220px;
+            min-width: 240px;
             display: none;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             border-radius: 0 0 6px 6px;
             padding: 0.5rem 0;
-            margin-top: 0.8rem;
+            margin-top: 0px;
+        }
+
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 15px;
         }
 
         .dropdown:hover .dropdown-menu {
@@ -118,12 +130,15 @@
             font-size: 0.85rem;
             font-family: 'Segoe UI', sans-serif;
             color: var(--text-gray);
+            text-decoration: none;
             text-transform: none;
+            transition: all 0.2s ease;
         }
 
         .dropdown-menu li a:hover {
-            background-color: rgba(214, 254, 0, 0.05);
+            background-color: rgba(214, 254, 0, 0.08);
             color: var(--neon-green);
+            padding-left: 1.5rem;
         }
 
         /* Contenido de Selección de Coches */
@@ -224,7 +239,7 @@
             width: 100%;
             background-color: var(--card-bg);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
             color: var(--text-gray);
             font-size: 0.85rem;
             text-align: center;
