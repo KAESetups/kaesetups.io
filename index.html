@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAE Setups | Simracing Setups</title>
+    <!-- Importamos una fuente deportiva geométrica que encaja perfectamente con Sprintura Demo -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0b0b;
-            --card-bg: #141414;
-            --neon-green: #00ff66;
-            --neon-green-glow: rgba(0, 255, 102, 0.4);
-            --text-white: #ffffff;
+            --bg-color: #000000;
+            --card-bg: #0d0d0d;
+            --neon-green: #D6FE00;
+            --neon-green-glow: rgba(214, 254, 0, 0.35);
+            --text-white: #FFFFFF;
             --text-gray: #a0a0a0;
             --border-color: #222222;
         }
@@ -69,10 +71,14 @@
             filter: drop-shadow(0 0 10px var(--neon-green-glow));
         }
 
+        h1, h2, .section-title {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
         h1 {
             font-size: 2.8rem;
             letter-spacing: 2px;
-            text-transform: uppercase;
             text-shadow: 0 0 15px var(--neon-green-glow);
         }
 
@@ -96,10 +102,9 @@
 
         /* Secciones y Tarjetas */
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--neon-green);
             margin: 1.5rem 0 0.5rem 0;
-            text-transform: uppercase;
             letter-spacing: 1px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.3rem;
@@ -112,7 +117,7 @@
             padding: 1.5rem 2rem;
             border-radius: 6px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
         .card:hover {
@@ -122,7 +127,7 @@
         }
 
         .card h2 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--text-white);
         }
@@ -132,6 +137,7 @@
             font-size: 0.95rem;
             margin-bottom: 1rem;
             line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .btn {
@@ -147,6 +153,7 @@
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .btn:hover {
