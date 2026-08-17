@@ -33,6 +33,102 @@
             align-items: center;
         }
 
+        /* Barra de Navegación Superior */
+        .navbar {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-brand img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--neon-green-glow));
+        }
+
+        .nav-brand span {
+            color: var(--neon-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-family: 'Orbitron', sans-serif;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        /* Desplegable del Navbar */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-top: 2px solid var(--neon-green);
+            list-style: none;
+            min-width: 220px;
+            display: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+            border-radius: 0 0 6px 6px;
+            padding: 0.5rem 0;
+            margin-top: 0.8rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.85rem;
+            font-family: 'Segoe UI', sans-serif;
+            color: var(--text-gray);
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(214, 254, 0, 0.05);
+            color: var(--neon-green);
+        }
+
+        /* Contenido Principal */
         .banner-container {
             width: 100%;
             max-height: 400px;
@@ -135,75 +231,16 @@
             line-height: 1.5;
         }
 
-        details {
-            background-color: #111111;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 0.8rem 1.2rem;
-            margin-top: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        details[open] {
-            border-color: var(--neon-green);
-            box-shadow: 0 0 10px var(--neon-green-glow);
-        }
-
-        summary {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--neon-green);
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: '+';
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
-
-        details[open] summary::after {
-            content: '-';
-        }
-
-        .dropdown-content {
-            margin-top: 1rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .setup-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.6rem 0;
-            border-bottom: 1px dashed #1a1a1a;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .setup-item:last-child {
-            border-bottom: none;
-        }
-
         .btn {
             display: inline-block;
             background-color: transparent;
             color: var(--neon-green);
             border: 1px solid var(--neon-green);
-            padding: 0.4rem 0.9rem;
+            padding: 0.5rem 1.1rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
@@ -212,7 +249,7 @@
         .btn:hover {
             background-color: var(--neon-green);
             color: var(--bg-color);
-            box-shadow: 0 0 10px var(--neon-green-glow);
+            box-shadow: 0 0 15px var(--neon-green-glow);
         }
 
         footer {
@@ -230,6 +267,26 @@
 </head>
 <body>
 
+    <!-- Barra de Navegación con Desplegable -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="image.png" alt="KAE Logo"> KAE <span>Setups</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#">Simuladores ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="lmu.html">Le Mans Ultimate</a></li>
+                    <li><a href="#">Assetto Corsa (Próximamente)</a></li>
+                    <li><a href="#">RaceRoom (Próximamente)</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html">Servicios</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner Superior -->
     <div class="banner-container">
         <img src="BANNER.jpg" alt="KAE Setups Banner">
     </div>
@@ -254,53 +311,26 @@
         <div class="card">
             <h2>Le Mans Ultimate</h2>
             <p>Configuraciones de Hypercar y GTE/GT3 optimizadas para rendimiento puro y consistencia en stints largos de resistencia.</p>
-            
-            <details>
-                <summary>Hypercar</summary>
-                <div class="dropdown-content">
-                    <div class="setup-item">
-                        <span>Ferrari 499P (Le Mans - Race Setup)</span>
-                        <a href="#" class="btn">Descargar</a>
-                    </div>
-                    <div class="setup-item">
-                        <span>Toyota GR010 (Spa - Quali Setup)</span>
-                        <a href="#" class="btn">Descargar</a>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>GT3 / GTE</summary>
-                <div class="dropdown-content">
-                    <div class="setup-item">
-                        <span>Porsche 911 GT3 R (Monza - Race Setup)</span>
-                        <a href="#" class="btn">Descargar</a>
-                    </div>
-                    <div class="setup-item">
-                        <span>BMW M4 GT3 (Portimão - Quali Setup)</span>
-                        <a href="#" class="btn">Descargar</a>
-                    </div>
-                </div>
-            </details>
+            <a href="lmu.html" class="btn">Elegir Coche</a>
         </div>
 
         <div class="card">
             <h2>Assetto Corsa</h2>
             <p>Físicas ajustadas, reglajes aerodinámicos avanzados y mapas de configuración personalizados para competición.</p>
-            <a href="#" class="btn" style="margin-top: 1rem;">Próximamente</a>
+            <a href="#" class="btn">Próximamente</a>
         </div>
 
         <div class="card">
             <h2>RaceRoom Racing Experience</h2>
             <p>Setups equilibrados para exprimir al máximo el comportamiento dinámico de los bólidos en RaceRoom.</p>
-            <a href="#" class="btn" style="margin-top: 1rem;">Próximamente</a>
+            <a href="#" class="btn">Próximamente</a>
         </div>
 
         <h2 class="section-title">Servicios Personalizados</h2>
         <div class="card">
             <h2>Setups a Pedido</h2>
             <p>¿Necesitas una configuración específica para un evento, campeonato o circuito en concreto? Adaptamos el coche por completo a tu estilo de conducción.</p>
-            <a href="#" class="btn" style="margin-top: 1rem;">Pedir Setup</a>
+            <a href="#" class="btn">Pedir Setup</a>
         </div>
     </div>
 
