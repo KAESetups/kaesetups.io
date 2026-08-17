@@ -20,6 +20,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -29,19 +30,49 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem 1rem;
+        }
+
+        /* Banner Principal */
+        .banner-container {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            border-bottom: 2px solid var(--neon-green);
+            box-shadow: 0 4px 30px var(--neon-green-glow);
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
         }
 
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin: 2.5rem 0 1.5rem 0;
+            padding: 0 1rem;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-title img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px var(--neon-green-glow));
         }
 
         h1 {
             font-size: 2.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
             text-shadow: 0 0 15px var(--neon-green-glow);
         }
 
@@ -60,6 +91,18 @@
             max-width: 900px;
             display: grid;
             gap: 1.5rem;
+            padding: 0 1rem 3rem 1rem;
+        }
+
+        /* Secciones y Tarjetas */
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            margin: 1.5rem 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
         }
 
         .card {
@@ -79,7 +122,7 @@
         }
 
         .card h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
             color: var(--text-white);
         }
@@ -88,6 +131,7 @@
             color: var(--text-gray);
             font-size: 0.95rem;
             margin-bottom: 1rem;
+            line-height: 1.5;
         }
 
         .btn {
@@ -112,38 +156,73 @@
         }
 
         footer {
-            margin-top: auto;
-            padding-top: 3rem;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1rem;
             color: var(--text-gray);
             font-size: 0.85rem;
             text-align: center;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
 
+    <!-- Banner Superior -->
+    <div class="banner-container">
+        <img src="BANNER.jpg" alt="KAE Setups Banner">
+    </div>
+
     <header>
-        <h1>KAE <span>Setups</span></h1>
-        <p class="subtitle">Los mejores reglajes de simracing profesionales</p>
+        <div class="logo-title">
+            <img src="image.png" alt="KAE Logo">
+            <h1>KAE <span>Setups</span></h1>
+        </div>
+        <p class="subtitle">Plataforma profesional de reglajes para Simracing</p>
     </header>
 
     <div class="container">
+        <!-- Quiénes Somos -->
+        <h2 class="section-title">Quiénes Somos</h2>
+        <div class="card">
+            <h2>El Equipo KAE</h2>
+            <p>Somos un proyecto especializado en el desarrollo y optimización de configuraciones avanzadas para competiciones de simracing. Buscamos exprimir al máximo cada vehículo, ofreciendo setups precisos, consistentes y adaptados a las exigencias de los simracers más competitivos.</p>
+        </div>
+
+        <!-- Reglajes por Simulador -->
+        <h2 class="section-title">Nuestros Reglajes</h2>
+        
         <div class="card">
             <h2>Le Mans Ultimate</h2>
-            <p>Configuraciones de Hypercar y GT3 optimizadas para rendimiento y consistencia en pista.</p>
+            <p>Configuraciones de Hypercar y GTE/GT3 optimizadas para rendimiento puro y consistencia en stints largos de resistencia.</p>
             <a href="#" class="btn">Próximamente</a>
         </div>
 
         <div class="card">
             <h2>Assetto Corsa</h2>
-            <p>Físicas ajustadas, reglajes aerodinámicos y mapas de configuración personalizados.</p>
+            <p>Físicas ajustadas, reglajes aerodinámicos avanzados y mapas de configuración personalizados para competición.</p>
             <a href="#" class="btn">Próximamente</a>
+        </div>
+
+        <div class="card">
+            <h2>RaceRoom Racing Experience</h2>
+            <p>Setups equilibrados para exprimir al máximo el comportamiento dinámico de los bólidos en RaceRoom.</p>
+            <a href="#" class="btn">Próximamente</a>
+        </div>
+
+        <!-- Setups a Pedido -->
+        <h2 class="section-title">Servicios Personalizados</h2>
+        <div class="card">
+            <h2>Setups a Pedido</h2>
+            <p>¿Necesitas una configuración específica para un evento, campeonato o circuito en concreto? Adaptamos el coche a tu estilo de conducción.</p>
+            <a href="#" class="btn">Pedir Setup</a>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 KAE Setups. Todos los derechos reservados.
+        &copy; 2026 KAE Setups. Todos los derechos reservados. #BUILTDIFFERENT
     </footer>
 
 </body>
