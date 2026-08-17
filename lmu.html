@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAE Setups | Simracing Setups</title>
+    <title>Le Mans Ultimate | KAE Setups</title>
     
     <!-- PASO 1: El traductor de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,7 +14,6 @@
             --bg-color: #000000;
             --card-bg: #0d0d0d;
             --neon-green: #D6FE00;
-            --neon-green-glow: rgba(214, 254, 0, 0.35);
             --text-white: #FFFFFF;
             --text-gray: #a0a0a0;
             --border-color: #222222;
@@ -58,11 +57,8 @@
         }
         .btn-login:hover { background: var(--neon-green); color: black; }
 
-        /* ... (Resto de tus estilos que ya tenías) ... */
-        .banner-container { width: 100%; max-height: 400px; overflow: hidden; border-bottom: 2px solid var(--neon-green); }
-        .banner-container img { width: 100%; height: auto; object-fit: cover; }
-        .container { width: 100%; max-width: 900px; padding: 3rem 1rem; display: grid; gap: 1.5rem; }
-        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-left: 4px solid var(--neon-green); padding: 1.5rem; border-radius: 6px; }
+        .container { width: 100%; max-width: 900px; padding: 3rem 1rem; }
+        .page-title { margin-bottom: 2rem; border-bottom: 2px solid var(--neon-green); padding-bottom: 1rem; }
         footer { width: 100%; background-color: var(--card-bg); padding: 2rem; text-align: center; color: var(--text-gray); margin-top: auto; }
     </style>
 </head>
@@ -74,22 +70,16 @@
         </a>
         <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="lmu.html">Simuladores</a></li>
+            <li><a href="lmu.html" style="color: var(--neon-green);">Simuladores</a></li>
             <li><a href="#">Servicios</a></li>
             <!-- Botón de Login -->
             <li><button id="login-btn" class="btn-login" onclick="handleAuth()">Iniciar Sesión</button></li>
         </ul>
     </nav>
 
-    <div class="banner-container">
-        <img src="BANNER.jpg" alt="Banner">
-    </div>
-
     <div class="container">
-        <div class="card">
-            <h1>Bienvenido a KAE Setups</h1>
-            <p>Tu plataforma profesional de reglajes para Simracing.</p>
-        </div>
+        <h1 class="page-title">Le Mans Ultimate</h1>
+        <p>Aquí encontrarás todos los reglajes disponibles para LMU.</p>
     </div>
 
     <footer>&copy; 2026 KAE Setups. #BUILTDIFFERENT</footer>
