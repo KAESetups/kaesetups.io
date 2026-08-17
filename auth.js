@@ -1,60 +1,92 @@
-// CONFIGURACIÓN DE SUPABASE
-const SUPABASE_URL = 'https://bmyazfgvdwmxfdvgrjju.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWF6Zmd2ZHdteGZkdmdyamp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5ODc5NjAsImV4cCI6MjEwMjU2Mzk2MH0.EACJ4AtYJcIz5DU-qI7hNo71CC53-s7bsxLWh_hjCKc';
-
-// Inicializar cliente de Supabase
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// Función que se ejecuta al hacer clic en el botón de la barra de navegación
-async function handleAuth() {
-    const btn = document.getElementById('login-btn');
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAE Setups | Simracing Setups</title>
     
-    // Si ya hay una sesión activa, el botón actúa como "Mi Perfil"
-    if (btn.dataset.loggedIn === "true") {
-        alert("¡Ya estás dentro! Aquí iría la redirección a tu perfil o inventario.");
-        return;
-    }
-
-    // Si no está logueado, lanza el proceso de autenticación con Discord
-    const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'discord',
-        options: {
-            redirectTo: window.location.origin + window.location.pathname
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #0d0d0d;
+            --neon-green: #D6FE00;
+            --neon-green-glow: rgba(214, 254, 0, 0.35);
+            --text-white: #FFFFFF;
+            --text-gray: #a0a0a0;
+            --border-color: #222222;
         }
-    });
 
-    if (error) {
-        console.error('Error al iniciar sesión con Discord:', error.message);
-    }
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-// Comprobar el estado de la sesión al cargar la página
-window.addEventListener('DOMContentLoaded', async () => {
-    const btn = document.getElementById('login-btn');
-    if (!btn) return;
+        body { background-color: var(--bg-color); color: var(--text-white); min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
 
-    // Obtener la sesión actual del usuario en Supabase
-    const { data: { session } } = await supabase.auth.getSession();
+        /* Navegación */
+        .navbar {
+            width: 100%;
+            background-color: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    if (session) {
-        // Usuario logueado: transformamos el botón
-        btn.textContent = "Mi Perfil";
-        btn.dataset.loggedIn = "true";
-        
-        // Guardar o verificar usuario en la tabla 'users' de la base de datos
-        const user = session.user;
-        const username = user.user_metadata?.full_name || user.user_metadata?.name || "Piloto";
-        const avatarUrl = user.user_metadata?.avatar_url || "";
+        .nav-brand { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text-white); text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .nav-brand span { color: var(--neon-green); }
 
-        await supabase.from('users').upsert({
-            id: user.id,
-            username: username,
-            avatar_url: avatarUrl,
-            provider: 'discord'
-        }, { onConflict: 'id' });
-    } else {
-        // Usuario no logueado
-        btn.textContent = "Iniciar Sesión";
-        btn.dataset.loggedIn = "false";
-    }
-});
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links > li > a { color: var(--text-gray); text-decoration: none; font-size: 0.9rem; font-weight: 600; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
+        .nav-links > li > a:hover { color: var(--neon-green); }
+
+        /* Estilo del Botón (Sin onclick en línea, lo maneja JS) */
+        .btn-login {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover { background: var(--neon-green); color: black; box-shadow: 0 0 10px var(--neon-green-glow); }
+
+        .container { width: 100%; max-width: 900px; padding: 3rem 1rem; }
+        footer { width: 100%; background-color: var(--card-bg); padding: 2rem; text-align: center; color: var(--text-gray); margin-top: auto; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="image.png" alt="Logo" style="width:36px; height:36px; object-fit:contain;"> KAE <span>Setups</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="lmu.html">Simuladores</a></li>
+            <li><a href="#">Servicios</a></li>
+            <!-- Botón limpio sin atributos onclick -->
+            <li><button id="login-btn" class="btn-login">Iniciar Sesión</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Bienvenido a KAE Setups</h1>
+        <p>Inicia sesión para acceder a tus reglajes.</p>
+    </div>
+
+    <footer>&copy; 2026 KAE Setups. #BUILTDIFFERENT</footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
