@@ -2,11 +2,18 @@
 const SUPABASE_URL = 'https://bmyazfgvdwmxfdvgrjju.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWF6Zmd2ZHdteGZkdmdyamp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5ODc5NjAsImV4cCI6MjEwMjU2Mzk2MH0.EACJ4AtYJcIz5DU-qI7hNo71CC53-s7bsxLWh_hjCKc';
 
-// Inicializar cliente de Supabase
+// Comprobar si Supabase cargó bien
+if (window.supabase) {
+    console.log("SDK de Supabase cargado correctamente.");
+} else {
+    console.error("¡ERROR! El SDK de Supabase no se ha cargado desde el CDN.");
+}
+
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Función principal de autenticación asignada por código
+// Función principal de autenticación
 async function handleAuth() {
+    console.log("¡Click detectado en el botón de login!");
     const btn = document.getElementById('login-btn');
     
     if (btn && btn.dataset.loggedIn === "true") {
@@ -14,6 +21,7 @@ async function handleAuth() {
         return;
     }
 
+    console.log("Llamando a Supabase para iniciar sesión con Discord...");
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'discord',
         options: {
@@ -22,22 +30,35 @@ async function handleAuth() {
     });
 
     if (error) {
-        console.error('Error al iniciar sesión con Discord:', error.message);
+        console.error('Error detallado de Supabase:', error.message);
+    } else {
+        console.log('Respuesta de Supabase:', data);
     }
 }
 
-// Configurar el botón y comprobar sesión al cargar la página de forma limpia
+// Configurar el botón y comprobar sesión al cargar la página
 window.addEventListener('DOMContentLoaded', async () => {
+    console.log("Página cargada, buscando el botón...");
     const btn = document.getElementById('login-btn');
-    if (!btn) return;
+    
+    if (!btn) {
+        console.error("¡No se encontró el elemento con id 'login-btn' en el HTML!");
+        return;
+    }
 
-    // Asignar el evento de clic por JavaScript para evitar errores de referencia
+    console.log("Botón encontrado. Asignando evento de clic.");
     btn.addEventListener('click', handleAuth);
 
-    // Comprobar si el usuario ya inició sesión previamente
-    const { data: { session } } = await supabase.auth.getSession();
+    // Comprobar sesión
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    
+    if (sessionError) {
+        console.error("Error al obtener sesión:", sessionError.message);
+        return;
+    }
 
     if (session) {
+        console.log("Usuario con sesión activa:", session.user.email);
         btn.textContent = "Mi Perfil";
         btn.dataset.loggedIn = "true";
         
@@ -52,6 +73,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             provider: 'discord'
         }, { onConflict: 'id' });
     } else {
+        console.log("No hay sesión activa.");
         btn.textContent = "Iniciar Sesión";
         btn.dataset.loggedIn = "false";
     }
