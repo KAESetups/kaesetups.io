@@ -33,7 +33,7 @@
             align-items: center;
         }
 
-        /* Barra de Navegación Superior */
+        /* Barra de Navegación */
         .navbar {
             width: 100%;
             background-color: var(--card-bg);
@@ -90,7 +90,7 @@
             color: var(--neon-green);
         }
 
-        /* Desplegable del Navbar Corregido */
+        /* Desplegable estable */
         .dropdown {
             position: relative;
         }
@@ -108,11 +108,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
             border-radius: 0 0 6px 6px;
             padding: 0.5rem 0;
-            /* Eliminamos el espacio superior para que no se pierda el cursor */
-            margin-top: 0px; 
+            margin-top: 0px;
         }
 
-        /* Creamos una zona de puente invisible para que el ratón no pierda el contacto */
         .dropdown::after {
             content: '';
             position: absolute;
@@ -133,8 +131,6 @@
             font-family: 'Segoe UI', sans-serif;
             color: var(--text-gray);
             text-decoration: none;
-            text-transform: none;
-            letter-spacing: normal;
             transition: all 0.2s ease;
         }
 
@@ -283,7 +279,6 @@
 </head>
 <body>
 
-    <!-- Barra de Navegación con Desplegable -->
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
             <img src="image.png" alt="KAE Logo"> KAE <span>Setups</span>
@@ -302,7 +297,6 @@
         </ul>
     </nav>
 
-    <!-- Banner Superior -->
     <div class="banner-container">
         <img src="BANNER.jpg" alt="KAE Setups Banner">
     </div>
