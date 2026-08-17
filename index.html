@@ -45,7 +45,7 @@
         .nav-links > li > a { color: var(--text-gray); text-decoration: none; font-size: 0.9rem; font-weight: 600; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
         .nav-links > li > a:hover { color: var(--neon-green); }
 
-        /* Estilo del Botón */
+        /* Estilo del Botón (Sin onclick en línea, lo maneja JS) */
         .btn-login {
             background: transparent;
             border: 1px solid var(--neon-green);
@@ -73,8 +73,8 @@
             <li><a href="index.html">Inicio</a></li>
             <li><a href="lmu.html">Simuladores</a></li>
             <li><a href="#">Servicios</a></li>
-            <!-- Botón de login llamando a la función -->
-            <li><button id="login-btn" class="btn-login" onclick="handleAuth()">Iniciar Sesión</button></li>
+            <!-- Botón limpio sin atributos onclick -->
+            <li><button id="login-btn" class="btn-login">Iniciar Sesión</button></li>
         </ul>
     </nav>
 
@@ -85,7 +85,7 @@
 
     <footer>&copy; 2026 KAE Setups. #BUILTDIFFERENT</footer>
 
-    <!-- SCRIPT IMPORTANTE: Primero el SDK, luego tu archivo auth.js -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="auth.js"></script>
 </body>
