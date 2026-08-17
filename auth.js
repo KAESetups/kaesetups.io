@@ -2,61 +2,59 @@
 const SUPABASE_URL = 'https://bmyazfgvdwmxfdvgrjju.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWF6Zmd2ZHdteGZkdmdyamp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5ODc5NjAsImV4cCI6MjEwMjU2Mzk2MH0.EACJ4AtYJcIz5DU-qI7hNo71CC53-s7bsxLWh_hjCKc';
 
-// Inicializamos la conexión
+// Inicializar cliente de Supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ==========================================
-// FUNCIÓN DE INICIO DE SESIÓN
-// ==========================================
+// Función que se ejecuta al hacer clic en el botón de la barra de navegación
 async function handleAuth() {
-    // Si ya está logueado, redirigir al perfil
-    const { data: { session } } = await supabase.auth.getSession();
+    const btn = document.getElementById('login-btn');
     
-    if (session) {
-        window.location.href = 'perfil.html';
+    // Si ya hay una sesión activa, el botón actúa como "Mi Perfil"
+    if (btn.dataset.loggedIn === "true") {
+        alert("¡Ya estás dentro! Aquí iría la redirección a tu perfil o inventario.");
         return;
     }
 
-    // Si no está logueado, abrir ventana de Discord para iniciar sesión
-    const { error } = await supabase.auth.signInWithOAuth({
+    // Si no está logueado, lanza el proceso de autenticación con Discord
+    const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'discord',
         options: {
-            redirectTo: window.location.href // Te devuelve a la misma página tras iniciar sesión
+            redirectTo: window.location.origin + window.location.pathname
         }
     });
 
     if (error) {
         console.error('Error al iniciar sesión con Discord:', error.message);
-        alert('Hubo un error al intentar conectar con Discord.');
     }
 }
 
-// ==========================================
-// COMPROBAR ESTADO AL CARGAR LA PÁGINA
-// ==========================================
-// Cada vez que abres o recargas una página, esto comprueba si hay una sesión activa
-document.addEventListener('DOMContentLoaded', async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    actualizarBotonLogin(session);
-});
-
-// Escucha cambios en tiempo real (si inicia sesión o cierra sesión)
-supabase.auth.onAuthStateChange((event, session) => {
-    actualizarBotonLogin(session);
-});
-
-// Función auxiliar para cambiar el aspecto del botón dinámicamente
-function actualizarBotonLogin(session) {
+// Comprobar el estado de la sesión al cargar la página
+window.addEventListener('DOMContentLoaded', async () => {
     const btn = document.getElementById('login-btn');
     if (!btn) return;
 
+    // Obtener la sesión actual del usuario en Supabase
+    const { data: { session } } = await supabase.auth.getSession();
+
     if (session) {
-        // Si hay sesión activa: Cambia el botón a "Mi Perfil"
-        btn.innerText = 'Mi Perfil';
-        btn.style.borderColor = 'var(--neon-green)';
-        btn.style.color = 'var(--neon-green)';
+        // Usuario logueado: transformamos el botón
+        btn.textContent = "Mi Perfil";
+        btn.dataset.loggedIn = "true";
+        
+        // Guardar o verificar usuario en la tabla 'users' de la base de datos
+        const user = session.user;
+        const username = user.user_metadata?.full_name || user.user_metadata?.name || "Piloto";
+        const avatarUrl = user.user_metadata?.avatar_url || "";
+
+        await supabase.from('users').upsert({
+            id: user.id,
+            username: username,
+            avatar_url: avatarUrl,
+            provider: 'discord'
+        }, { onConflict: 'id' });
     } else {
-        // Si no hay sesión: Muestra "Iniciar Sesión"
-        btn.innerText = 'Iniciar Sesión';
+        // Usuario no logueado
+        btn.textContent = "Iniciar Sesión";
+        btn.dataset.loggedIn = "false";
     }
-}
+});
