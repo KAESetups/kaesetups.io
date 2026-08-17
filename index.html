@@ -33,7 +33,6 @@
             align-items: center;
         }
 
-        /* Banner Principal */
         .banner-container {
             width: 100%;
             max-height: 400px;
@@ -136,7 +135,6 @@
             line-height: 1.5;
         }
 
-        /* Estilos para el Desplegable (Acordeón) */
         details {
             background-color: #111111;
             border: 1px solid var(--border-color);
@@ -180,16 +178,16 @@
             margin-top: 1rem;
             padding-top: 0.8rem;
             border-top: 1px solid var(--border-color);
-            color: var(--text-gray);
-            font-size: 0.9rem;
         }
 
         .setup-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 0;
+            padding: 0.6rem 0;
             border-bottom: 1px dashed #1a1a1a;
+            color: var(--text-gray);
+            font-size: 0.9rem;
         }
 
         .setup-item:last-child {
@@ -232,7 +230,6 @@
 </head>
 <body>
 
-    <!-- Banner Superior -->
     <div class="banner-container">
         <img src="BANNER.jpg" alt="KAE Setups Banner">
     </div>
@@ -246,27 +243,23 @@
     </header>
 
     <div class="container">
-        <!-- Quiénes Somos -->
         <h2 class="section-title">Quiénes Somos</h2>
         <div class="card">
             <h2>El Equipo KAE</h2>
-            <p>Somos un proyecto especializado en el desarrollo y optimización de configuraciones avanzadas para competiciones de simracing. Buscamos exprimir al máximo cada vehículo, ofreciendo setups precisos, consistentes y adaptados a las exigencias de los simracers más competitivos.</p>
+            <p>Somos un proyecto especializado en el desarrollo y la optimización de configuraciones avanzadas para competiciones de simracing. Buscamos exprimir al máximo el rendimiento de cada vehículo, ofreciendo setups precisos, consistentes y adaptados a las exigencias de los pilotos más competitivos.</p>
         </div>
 
-        <!-- Reglajes por Simulador -->
         <h2 class="section-title">Nuestros Reglajes</h2>
         
-        <!-- Le Mans Ultimate con Desplegables -->
         <div class="card">
             <h2>Le Mans Ultimate</h2>
             <p>Configuraciones de Hypercar y GTE/GT3 optimizadas para rendimiento puro y consistencia en stints largos de resistencia.</p>
             
-            <!-- Desplegable Categoría Hypercar -->
             <details>
                 <summary>Hypercar</summary>
                 <div class="dropdown-content">
                     <div class="setup-item">
-                        <span>Ferrari 49P (Le Mans - Race Setup)</span>
+                        <span>Ferrari 499P (Le Mans - Race Setup)</span>
                         <a href="#" class="btn">Descargar</a>
                     </div>
                     <div class="setup-item">
@@ -276,7 +269,6 @@
                 </div>
             </details>
 
-            <!-- Desplegable Categoría GT3 -->
             <details>
                 <summary>GT3 / GTE</summary>
                 <div class="dropdown-content">
@@ -295,21 +287,20 @@
         <div class="card">
             <h2>Assetto Corsa</h2>
             <p>Físicas ajustadas, reglajes aerodinámicos avanzados y mapas de configuración personalizados para competición.</p>
-            <a href="#" class="btn">Próximamente</a>
+            <a href="#" class="btn" style="margin-top: 1rem;">Próximamente</a>
         </div>
 
         <div class="card">
             <h2>RaceRoom Racing Experience</h2>
             <p>Setups equilibrados para exprimir al máximo el comportamiento dinámico de los bólidos en RaceRoom.</p>
-            <a href="#" class="btn">Próximamente</a>
+            <a href="#" class="btn" style="margin-top: 1rem;">Próximamente</a>
         </div>
 
-        <!-- Setups a Pedido -->
         <h2 class="section-title">Servicios Personalizados</h2>
         <div class="card">
             <h2>Setups a Pedido</h2>
-            <p>¿Necesitas una configuración específica para un evento, campeonato o circuito en concreto? Adaptamos el coche a tu estilo de conducción.</p>
-            <a href="#" class="btn">Pedir Setup</a>
+            <p>¿Necesitas una configuración específica para un evento, campeonato o circuito en concreto? Adaptamos el coche por completo a tu estilo de conducción.</p>
+            <a href="#" class="btn" style="margin-top: 1rem;">Pedir Setup</a>
         </div>
     </div>
 
