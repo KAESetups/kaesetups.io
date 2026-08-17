@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Mans Ultimate | KAE Setups</title>
+    <title>KAE Setups | Le Mans Ultimate</title>
     
-    <!-- PASO 1: El traductor de Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #000000;
             --card-bg: #0d0d0d;
             --neon-green: #D6FE00;
+            --neon-green-glow: rgba(214, 254, 0, 0.35);
             --text-white: #FFFFFF;
             --text-gray: #a0a0a0;
             --border-color: #222222;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
         body { background-color: var(--bg-color); color: var(--text-white); min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
 
-        /* Navbar actualizada */
+        /* Navegación */
         .navbar {
             width: 100%;
             background-color: rgba(13, 13, 13, 0.85);
@@ -33,58 +33,60 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2.5rem;
-            position: sticky; top: 0; z-index: 1000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .nav-brand { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text-white); text-decoration: none; display: flex; align-items: center; gap: 12px; }
         .nav-brand span { color: var(--neon-green); }
 
-        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-        .nav-links > li > a { color: var(--text-gray); text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 0.9rem; transition: 0.2s; }
-        .nav-links > li > a:hover { color: var(--neon-green); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links > li > a { color: var(--text-gray); text-decoration: none; font-size: 0.9rem; font-weight: 600; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
+        .nav-links > li > a:hover, .nav-links > li > a.active { color: var(--neon-green); }
 
-        /* Estilo del Botón de Login */
+        /* Estilo del Botón */
         .btn-login {
             background: transparent;
             border: 1px solid var(--neon-green);
             color: var(--neon-green);
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 4px;
             cursor: pointer;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.8rem;
             transition: all 0.3s ease;
         }
-        .btn-login:hover { background: var(--neon-green); color: black; }
+        .btn-login:hover { background: var(--neon-green); color: black; box-shadow: 0 0 10px var(--neon-green-glow); }
 
         .container { width: 100%; max-width: 900px; padding: 3rem 1rem; }
-        .page-title { margin-bottom: 2rem; border-bottom: 2px solid var(--neon-green); padding-bottom: 1rem; }
-        footer { width: 100%; background-color: var(--card-bg); padding: 2rem; text-align: center; color: var(--text-gray); margin-top: auto; }
+        footer { width: 100%; background-color: var(--card-bg); padding: 2rem; text-align: center; color: var(--text-gray); margin-top: auto; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
-            <img src="image.png" alt="KAE Logo" style="width:36px;"> KAE <span>Setups</span>
+            <img src="image.png" alt="Logo" style="width:36px; height:36px; object-fit:contain;"> KAE <span>Setups</span>
         </a>
         <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="lmu.html" style="color: var(--neon-green);">Simuladores</a></li>
+            <li><a href="lmu.html" class="active">Simuladores</a></li>
             <li><a href="#">Servicios</a></li>
-            <!-- Botón de Login -->
+            <!-- Botón de login -->
             <li><button id="login-btn" class="btn-login" onclick="handleAuth()">Iniciar Sesión</button></li>
         </ul>
     </nav>
 
     <div class="container">
-        <h1 class="page-title">Le Mans Ultimate</h1>
-        <p>Aquí encontrarás todos los reglajes disponibles para LMU.</p>
+        <h1 style="font-family:'Orbitron',sans-serif; margin-bottom:0.5rem;">Le Mans Ultimate - Setups</h1>
+        <p style="color:var(--text-gray);">Explora los reglajes oficiales para Hypercar y GT3.</p>
     </div>
 
     <footer>&copy; 2026 KAE Setups. #BUILTDIFFERENT</footer>
 
-    <!-- PASO 3: Vincular el script de login -->
+    <!-- Scripts de Supabase y autenticación -->
+    <script src="https://cdn.jsdelivr.5net/npm/@supabase/supabase-js@2"></script>
     <script src="auth.js"></script>
 </body>
 </html>
