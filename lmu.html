@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Mans Ultimate Setups | KAE Setups</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #0d0d0d;
+            --neon-green: #D6FE00;
+            --neon-green-glow: rgba(214, 254, 0, 0.35);
+            --text-white: #FFFFFF;
+            --text-gray: #a0a0a0;
+            --border-color: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Barra de Navegación Superior */
+        .navbar {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-brand img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--neon-green-glow));
+        }
+
+        .nav-brand span {
+            color: var(--neon-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-family: 'Orbitron', sans-serif;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-top: 2px solid var(--neon-green);
+            list-style: none;
+            min-width: 220px;
+            display: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+            border-radius: 0 0 6px 6px;
+            padding: 0.5rem 0;
+            margin-top: 0.8rem;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.85rem;
+            font-family: 'Segoe UI', sans-serif;
+            color: var(--text-gray);
+            text-transform: none;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(214, 254, 0, 0.05);
+            color: var(--neon-green);
+        }
+
+        /* Contenido de Selección de Coches */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 2.5rem 1rem;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--neon-green-glow);
+        }
+
+        .page-header h1 span {
+            color: var(--neon-green);
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--neon-green);
+            margin: 1rem 0 0.5rem 0;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .car-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--neon-green);
+            padding: 1.2rem 1.5rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .car-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 4px 20px var(--neon-green-glow);
+            transform: translateY(-2px);
+        }
+
+        .car-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--text-white);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: var(--neon-green);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px var(--neon-green-glow);
+        }
+
+        footer {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegación con Desplegable -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="image.png" alt="KAE Logo"> KAE <span>Setups</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" style="color: var(--neon-green);">Simuladores ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="lmu.html">Le Mans Ultimate</a></li>
+                    <li><a href="#">Assetto Corsa (Próximamente)</a></li>
+                    <li><a href="#">RaceRoom (Próximamente)</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html">Servicios</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Le Mans Ultimate <span>Setups</span></h1>
+            <p>Selecciona tu categoría y vehículo para acceder a las configuraciones de rendimiento.</p>
+        </div>
+
+        <h2 class="section-title">Hypercar</h2>
+        <div class="car-grid">
+            <div class="car-card">
+                <h3>Ferrari 499P</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+            <div class="car-card">
+                <h3>Toyota GR010</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+            <div class="car-card">
+                <h3>Porsche 963</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+            <div class="car-card">
+                <h3>Cadillac V-Series.R</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">GT3 / GTE</h2>
+        <div class="car-grid">
+            <div class="car-card">
+                <h3>Porsche 911 GT3 R</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+            <div class="car-card">
+                <h3>BMW M4 GT3</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+            <div class="car-card">
+                <h3>Ferrari 296 GT3</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+            <div class="car-card">
+                <h3>Aston Martin Vantage</h3>
+                <a href="#" class="btn">Ver Setups</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 KAE Setups. Todos los derechos reservados. #BUILTDIFFERENT
+    </footer>
+
+</body>
+</html>
